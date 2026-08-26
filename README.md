@@ -14,6 +14,7 @@ Description:
 
 
 FEATURES :
+<<<<<<< HEAD
    - Pokeball shake animation through blinking LEDs
    - Different pokemon rarity has different led indicator at the end (RESULT)
    - 5 pokemons can be obtained 
@@ -21,15 +22,32 @@ FEATURES :
    - It also calculates spawn rate to choose which pokemon is chosen for catching
    - It has different states for easy flow
    - only supports RGB leds (single)
+=======
+    - Pokeball shake animation through blinking LEDs
+    - Different pokemon rarity has different led indicator at the end (RESULT)
+    - 5 pokemons can be obtained 
+    - It has catch rate for catching pokemon
+    - It also calculates spawn rate to choose which pokemon is chosen for catching
+    - It has different states for easy flow
+    - only supports RGB leds (single)
+>>>>>>> 57d3109 (Completed the pokeball sim V1 + Added README file + CIRCUIT DIG)
 
 
 
 HARDWARE:
+<<<<<<< HEAD
    - ARDUINO UNO R3   x1
    - RGB leds         x1
    - Push Button      x1
    - Resistor 220ohm  x1
    - Jumper Wire      x1
+=======
+    - ARDUINO UNO R3   x1
+    - RGB leds         x1
+    - Push Button      x1
+    - Resistor 220ohm  x1
+    - Jumper Wire      x1
+>>>>>>> 57d3109 (Completed the pokeball sim V1 + Added README file + CIRCUIT DIG)
 
 
 CIRCUIT:
@@ -38,6 +56,7 @@ CIRCUIT:
 
 
 USUAGE:
+<<<<<<< HEAD
    - To use first press button while its in IDLE state
    - After that "The led will turn on" going into READY TO THROW STATE
    - then another press will intiate the catching sequence
@@ -50,3 +69,17 @@ FUTURE IMPROVEMENTS:
    - Add a OLED display for visual interaction
    - Add a movable platform to simulate pokeball shake
    - Create a 3d printed shell for proper pokeball
+=======
+    - To use first press button while its in IDLE state
+    - After that "The led will turn on" going into READY TO THROW STATE
+    - then another press will intiate the catching sequence
+    - Then after catching sequence based on the catch and spawn rate you will have a RESULT
+
+FUTURE IMPROVEMENTS:
+    - Much better Animations
+    - Refactoring code with better techniques
+    - Add a buzzer for more immersive experience
+    - Add a OLED display for visual interaction
+    - Add a movable platform to simulate pokeball shake
+    - Create a 3d printed shell for proper pokeball
+>>>>>>> 57d3109 (Completed the pokeball sim V1 + Added README file + CIRCUIT DIG)
