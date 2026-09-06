@@ -1,34 +1,63 @@
+
+
+const int sensor = 8;
+const int buzzer = 9;
+const int led =  10;
+
+
+
+
 void setup(){
-  pinMode(9, OUTPUT);
-  pinMode(10, OUTPUT);
-  pinMode(11, OUTPUT);
+  pinMode(sensor, INPUT);
+  pinMode(buzzer, OUTPUT);
+  pinMode(led, OUTPUT);
   Serial.begin(9600);
 }
 
-const int sensor = 9;
-const int led = 10;
-const int buzzer = 11;
 
-
-
+unsigned long motionTime;
+bool ledOn = false;
 bool motionDetected;
 
+bool firstLoop = true;
+
 void loop(){
-	
+    
+    if(firstLoop){
+        warmUpSequence();
+    }
+
+   
+
     motionDetected = digitalRead(sensor);
 
-    if(motionDetected){
+    if(motionDetected && !ledOn){
         digitalWrite(led, HIGH);
         tone(buzzer, 1000);
-        delay(500);
-        Serial.println("Detected");
-    }
-    else{
-        notone(buzzer);
-        digitalWrite(led, LOW);
-        Serial.println(" nope Detected");
-    }
+        motionTime = millis();
+        ledOn = true;
 
+        Serial.println("Motion detected");
+    }
     
+    if(ledOn && millis() - motionTime >= 5000){
+        digitalWrite(led, LOW);
+        ledOn = false;
+        noTone(buzzer);
+        Serial.println("5 sec passed away");
+    }
+    
+    firstLoop = false;
+}
 
+void warmUpSequence(){
+   
+  while(millis() < 60000){
+        digitalWrite(led, HIGH);
+        delay(1000);
+        digitalWrite(led, LOW);
+        delay(1000);
+        Serial.println("pleaseWait");
+  }
+    Serial.println("ready to use");
 }
