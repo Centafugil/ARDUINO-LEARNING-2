@@ -1,7 +1,7 @@
 #include <Wire.h>
 #include <Adafruit_SH110X.h>
 #include <Adafruit_GFX.h>
-#include <string.h>
+
 
 
 
@@ -12,7 +12,7 @@
 
 
 
-Adafruit_SH1106G display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, RESET_PIN);
+Adafruit_SH1106G display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, RESET_PIN);  //Constructor arguemnts of class adafruit
 
 const int triggerPin = 6;
 const int echoPin = 5;
@@ -28,14 +28,13 @@ int16_t h;
 void setup(){
   pinMode(triggerPin, OUTPUT);
   pinMode(echoPin, INPUT);
-
   Serial.begin(9600);
   display.begin(0x3C, true);
   display.clearDisplay();
 
 }
 
-int timeDuration;
+unsigned long timeDuration;
 int distance;
 float speed = 0.0351;
 
@@ -45,16 +44,20 @@ int pulseTime = 10; //trigger sound pulse time high -> low
 void loop(){
   
   triggerSound(pulseTime);
-
+  measureEchoTime();
   displayText(oledColor, 2, distanceCalculator());
+  Serial.println(distance/2);
+}
+
+int measureEchoTime(){
+  timeDuration = pulseIn(echoPin, HIGH);
 }
 
 
-int distanceCalculator(){
 
-  timeDuration = pulseIn(echoPin, HIGH);
+int distanceCalculator(){
+ 
   distance = speed * timeDuration;
-  Serial.println(distance/2);
   return distance/2;
   
 }
